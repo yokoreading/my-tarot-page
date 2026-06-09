@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>オリジナルカード制作サロン｜Yoko Reading Channel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#e96678;        /* ブランドのコーラルピンク：濃色面の主題 */
+  --ink-soft:#ef7d8c;
+  --paper:#fffaf0;      /* クリーム寄りの生成り */
+  --paper-warm:#f7eccf;  /* ブランドのクリーム */
+  --brass:#e0a81c;      /* ブランドの黄／黄土を差し色ゴールドに */
+  --brass-light:#f5c824; /* ブランドの鮮やかイエロー */
+  --pink:#e96678;       /* アクセントのコーラルピンク */
+  --pink-deep:#d23f54;  /* 明るい背景上の濃いピンク文字 */
+  --olive:#9aa040;      /* ブランドのオリーブ（第2アクセント） */
+  --olive-soft:#b2b75b;
+  --line:#f3dcc4;
+  --text:#5e3a2e;       /* 暖色に合う深いブラウン文字 */
+  --text-soft:#a07a52;
+  --white:#fffdf7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--paper);
+  color:var(--text);
+  line-height:1.9;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Noto Serif JP',serif;}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--brass);font-weight:500;margin-bottom:18px;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:var(--ink);color:var(--white);
+  padding:96px 0 104px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255,210,80,.22), transparent 46%),
+    radial-gradient(circle at 12% 88%, rgba(255,255,255,.12), transparent 40%);
+  pointer-events:none;
+}
+.hero .wrap{position:relative;z-index:1;}
+.hero .eyebrow{color:var(--brass-light);}
+.hero h1{
+  font-family:'Noto Serif JP',serif;font-weight:600;
+  font-size:clamp(2rem,5.4vw,3.2rem);line-height:1.45;
+  letter-spacing:.02em;margin-bottom:28px;
+}
+.hero h1 .accent{color:var(--brass-light);}
+.hero .lead{
+  font-size:clamp(1rem,2.4vw,1.12rem);color:#fff4e8;
+  max-width:640px;font-weight:300;
+}
+.hero .sub{
+  margin-top:34px;font-size:.86rem;color:#ffe9d0;letter-spacing:.04em;
+}
+.cta-row{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;}
+.btn{
+  display:inline-block;padding:15px 34px;border-radius:999px;
+  font-weight:500;font-size:.92rem;letter-spacing:.06em;
+  text-decoration:none;transition:.25s;cursor:pointer;
+}
+.btn-primary{background:var(--white);color:var(--pink-deep);font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.08);}
+.btn-primary:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
+.final .btn-primary{background:var(--ink);color:var(--white);}
+.final .btn-primary:hover{background:var(--ink-soft);color:var(--white);}
+.btn-ghost{border:1px solid rgba(255,255,255,.32);color:var(--white);}
+.btn-ghost:hover{border-color:var(--brass-light);color:var(--brass-light);}
+
+/* ---------- SECTION base ---------- */
+section{padding:88px 0;}
+.section-head{text-align:center;margin-bottom:56px;}
+.section-head h2{
+  font-family:'Noto Serif JP',serif;font-weight:600;
+  font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.5;color:var(--ink);
+}
+.section-head p{margin-top:18px;color:var(--text-soft);font-size:.96rem;}
+
+/* ---------- PROBLEM ---------- */
+.problem{background:var(--paper-warm);}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.problem-card{
+  background:var(--white);border:1px solid var(--line);
+  padding:34px 28px;border-radius:18px;
+}
+.problem-card .num{
+  font-family:'Noto Serif JP',serif;font-size:1.1rem;color:var(--olive);
+  font-weight:600;margin-bottom:14px;
+}
+.problem-card h3{font-size:1.02rem;font-weight:500;margin-bottom:12px;color:var(--ink);}
+.problem-card p{font-size:.88rem;color:var(--text-soft);}
+
+/* ---------- CYCLE (signature) ---------- */
+.cycle{background:var(--ink);color:var(--white);}
+.cycle .section-head h2{color:var(--white);}
+.cycle .section-head p{color:#fff4e8;}
+.cycle-track{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid rgba(255,255,255,.14);border-radius:20px;overflow:hidden;
+}
+.phase{
+  padding:42px 30px;position:relative;
+  border-right:1px solid rgba(255,255,255,.14);
+}
+.phase:last-child{border-right:none;}
+.phase .ph-label{
+  font-size:.68rem;letter-spacing:.3em;color:var(--brass-light);
+  text-transform:uppercase;margin-bottom:20px;display:block;
+}
+.phase .ph-title{
+  font-family:'Noto Serif JP',serif;font-size:1.32rem;font-weight:600;
+  margin-bottom:16px;line-height:1.4;
+}
+.phase p{font-size:.86rem;color:#fff4e8;}
+.cycle-note{
+  text-align:center;margin-top:30px;font-size:.82rem;color:#ffe9d0;
+  letter-spacing:.04em;
+}
+.cycle-loop{
+  text-align:center;margin-top:8px;color:var(--brass-light);
+  font-size:.9rem;letter-spacing:.18em;
+}
+
+/* ---------- WHY ME ---------- */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.why-text h2{
+  font-family:'Noto Serif JP',serif;font-weight:600;
+  font-size:clamp(1.4rem,3.4vw,1.9rem);line-height:1.55;color:var(--ink);
+  margin-bottom:24px;
+}
+.why-text p{color:var(--text-soft);font-size:.95rem;margin-bottom:18px;}
+.creds{list-style:none;}
+.creds li{
+  padding:18px 0;border-bottom:1px solid var(--line);
+  display:flex;gap:16px;align-items:baseline;
+}
+.creds li:first-child{border-top:1px solid var(--line);}
+.creds .c-mark{color:var(--brass);font-family:'Noto Serif JP',serif;font-weight:600;flex-shrink:0;}
+.creds .c-body{font-size:.9rem;}
+.creds .c-body strong{font-weight:500;color:var(--ink);}
+
+/* ---------- PROMO highlight ---------- */
+.promo{
+  background:linear-gradient(180deg,var(--paper-warm),var(--paper));
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.promo-box{
+  background:var(--ink);color:var(--white);border-radius:22px;
+  padding:56px 48px;text-align:center;position:relative;overflow:hidden;
+}
+.promo-box::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%, rgba(255,210,80,.28), transparent 60%);
+}
+.promo-box>*{position:relative;z-index:1;}
+.promo-box .eyebrow{color:var(--brass-light);}
+.promo-box h2{
+  font-family:'Noto Serif JP',serif;font-weight:600;
+  font-size:clamp(1.5rem,3.8vw,2.2rem);line-height:1.5;margin-bottom:22px;
+}
+.promo-box .num-big{color:var(--brass-light);}
+.promo-box p{color:#fff4e8;font-size:.95rem;max-width:560px;margin:0 auto;}
+.promo-box .condition{
+  margin-top:28px;display:inline-block;font-size:.8rem;letter-spacing:.06em;
+  color:var(--brass-light);border:1px solid rgba(255,255,255,.5);
+  padding:8px 20px;border-radius:999px;
+}
+
+/* ---------- ACCESS / barrier-lowering ---------- */
+.access{background:var(--white);}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.access-card{
+  border:1px solid var(--line);border-radius:18px;padding:32px 30px;
+  background:var(--paper);
+}
+.access-card h3{
+  font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.access-card h3 .dot{width:7px;height:7px;background:var(--olive);border-radius:50%;flex-shrink:0;}
+.access-card p{font-size:.88rem;color:var(--text-soft);}
+
+/* ---------- DIFF table ---------- */
+.diff{background:var(--paper-warm);}
+.diff-table{
+  background:var(--white);border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;
+}
+.diff-row{display:grid;grid-template-columns:1fr 1.3fr 1.3fr;}
+.diff-row>div{padding:22px 24px;border-bottom:1px solid var(--line);font-size:.88rem;}
+.diff-row:last-child>div{border-bottom:none;}
+.diff-head>div{
+  background:var(--ink);color:var(--white);font-weight:500;
+  font-family:'Noto Serif JP',serif;border-bottom:none;
+}
+.diff-head .dh-accent{background:var(--ink-soft);color:var(--brass-light);}
+.diff-row .label{font-weight:500;color:var(--ink);background:var(--paper);}
+.diff-row .mine{color:var(--ink);}
+
+/* ---------- PRICE ---------- */
+.price{background:var(--ink);color:var(--white);}
+.price .section-head h2{color:var(--white);}
+.price-card{
+  max-width:480px;margin:0 auto;background:var(--white);color:var(--text);
+  border-radius:22px;padding:48px 40px;text-align:center;
+  border-top:4px solid var(--brass);
+}
+.price-card .plan{font-size:.74rem;letter-spacing:.28em;color:var(--brass);text-transform:uppercase;margin-bottom:18px;}
+.price-card .badge{
+  display:inline-block;background:var(--brass);color:var(--white);
+  font-size:.74rem;letter-spacing:.12em;font-weight:500;
+  padding:6px 16px;border-radius:999px;margin-bottom:20px;
+}
+.price-card .regular{
+  font-size:.86rem;color:var(--text-soft);text-decoration:line-through;
+  margin-bottom:4px;
+}
+.price-card .amount{font-family:'Noto Serif JP',serif;font-weight:700;font-size:2.6rem;color:var(--ink);line-height:1.2;}
+.price-card .amount .ph{color:var(--brass);}
+.price-card .unit{font-size:.9rem;color:var(--text-soft);font-weight:400;}
+.price-card .cap{margin-top:14px;font-size:.86rem;color:var(--text-soft);}
+.price-card .placeholder-note{
+  margin-top:24px;font-size:.74rem;color:#b08a8a;background:var(--paper-warm);
+  padding:10px 16px;border-radius:12px;letter-spacing:.02em;
+}
+.price-incl{max-width:480px;margin:32px auto 0;list-style:none;}
+.price-incl li{
+  padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);
+  font-size:.9rem;color:#fff4e8;display:flex;gap:12px;align-items:baseline;
+}
+.price-incl li .ic{color:var(--brass-light);flex-shrink:0;}
+
+/* ---------- FAQ ---------- */
+.faq-item{
+  border-bottom:1px solid var(--line);padding:8px 0;
+}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:22px 0;font-size:1rem;font-weight:500;color:var(--ink);
+  font-family:'Noto Sans JP',sans-serif;display:flex;justify-content:space-between;
+  align-items:center;gap:20px;line-height:1.6;
+}
+.faq-q .mk{color:var(--brass);font-size:1.3rem;flex-shrink:0;transition:.25s;font-weight:300;}
+.faq-q.open .mk{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-a p{padding:0 0 24px;color:var(--text-soft);font-size:.9rem;}
+
+/* ---------- FINAL CTA ---------- */
+.final{background:var(--paper-warm);text-align:center;}
+.final h2{
+  font-family:'Noto Serif JP',serif;font-weight:600;
+  font-size:clamp(1.5rem,3.8vw,2.1rem);color:var(--ink);
+  line-height:1.5;margin-bottom:22px;
+}
+.final p{color:var(--text-soft);font-size:.95rem;margin-bottom:38px;max-width:540px;margin-left:auto;margin-right:auto;}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:#ffe9d0;padding:44px 0;text-align:center;font-size:.8rem;letter-spacing:.04em;}
+footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-size:.95rem;margin-bottom:10px;}
+
+/* ---------- responsive ---------- */
+@media(max-width:760px){
+  section{padding:64px 0;}
+  .problem-grid{grid-template-columns:1fr;}
+  .cycle-track{grid-template-columns:1fr;}
+  .phase{border-right:none;border-bottom:1px solid rgba(255,255,255,.14);}
+  .phase:last-child{border-bottom:none;}
+  .why-grid{grid-template-columns:1fr;gap:32px;}
+  .access-grid{grid-template-columns:1fr;}
+  .diff-row{grid-template-columns:1fr;}
+  .diff-row>div{border-bottom:1px solid var(--line);}
+  .diff-head{display:none;}
+  .diff-row .label{font-size:.74rem;letter-spacing:.1em;padding-bottom:6px;}
+  .promo-box{padding:44px 28px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important;}
+}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Yoko Reading Channel presents</p>
+    <h1>あなたの手で、<br>世界に一つの<span class="accent">カード</span>を。<br>そして、それを<span class="accent">届ける</span>ところまで。</h1>
+    <p class="lead">タロット・ルノルマン・オラクル。自分だけのデッキを企画から制作、現物として手にするまで。作って終わりではなく、売れる状態にして、世に出すまでを伴走する継続型サロンです。</p>
+    <div class="cta-row">
+      <!-- <a href="#price" class="btn btn-primary">参加を検討する</a> -->
+      <a href="#cycle" class="btn btn-ghost">サロンの仕組みを見る</a>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Why it's hard alone</p>
+      <h2>「作りたい」のに、ひとりだと止まる。</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="num">壱</div>
+        <h3>入稿データで詰まる</h3>
+        <p>デザインができても、印刷所に出すためのデータ作成が最大の壁。塗り足し、解像度、入稿形式——ここで多くの人が止まります。</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">弐</div>
+        <h3>印刷所・原価がわからない</h3>
+        <p>どこに頼めばいいか、最小ロットは、原価は、価格はどう決めるか。調べる時間も判断材料もないまま手が止まります。</p>
+      </div>
+      <div class="problem-card">
+        <div class="num">参</div>
+        <h3>作れても、売る場所がない</h3>
+        <p>完成しても、宣伝する手段も届ける相手もいない。ここが、ひとりで作る人が最後にぶつかる壁です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CYCLE (signature) -->
+<section class="cycle" id="cycle">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How this salon works</p>
+      <h2>作る → 売れる状態にする → 届ける。<br>この循環を、一緒に回し続ける。</h2>
+      <p>1作目で終わりではありません。完成したら次のデッキへ。テーマを更新しながら、制作と販売を継続的に積み上げていきます。</p>
+    </div>
+    <div class="cycle-track">
+      <div class="phase">
+        <span class="ph-label">Phase 01</span>
+        <div class="ph-title">作る</div>
+        <p>テーマ・枚数・絵柄を決め、自分のデッキを形にします。みんなの進み具合を聞きながら、伴走形式で進めます。動画教材も用意。</p>
+      </div>
+      <div class="phase">
+        <span class="ph-label">Phase 02</span>
+        <div class="ph-title">売れる状態にする</div>
+        <p>印刷所への入稿データ作成、発注、受け取りまで。BOOTHなどで販売できる状態に仕上げます。実務でつまずくところを一つずつ。</p>
+      </div>
+      <div class="phase">
+        <span class="ph-label">Phase 03</span>
+        <div class="ph-title">届ける</div>
+        <p>完成したカードを世に出すフェーズ。販路の作り方を学び、チャンネルでご紹介できる仕上がりの作品には、紹介のチャンスがあります。</p>
+      </div>
+    </div>
+    <p class="cycle-loop">↻ そして、また次のデッキへ</p>
+    <p class="cycle-note">完成は終わりではなく、次のスタート。だから継続型にしています。</p>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section>
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-text">
+        <p class="eyebrow">Why Yoko</p>
+        <h2>「作り方」だけでなく、<br>「売り方」「届け方」まで<br>通った人間が教える。</h2>
+        <p>占いカードの制作講座は他にもあります。けれど、自分で作り、自分で売り、自分のチャンネルで届けるところまで一気通貫で経験している人は、ほとんどいません。</p>
+        <p>6年間積み上げてきた制作と発信の実務を、そのままお渡しします。</p>
+      </div>
+      <ul class="creds">
+        <li><span class="c-mark">◆</span><span class="c-body"><strong>ルノルマンカード（第3版まで制作・販売）</strong><br>改訂を重ね、BOOTHで継続販売中。</span></li>
+        <li><span class="c-mark">◆</span><span class="c-body"><strong>オラクルカード44枚を現在制作中</strong><br>企画から入稿、価格設定まで自分の手で。制作の全工程を実践しています。</span></li>
+        <li><span class="c-mark">◆</span><span class="c-body"><strong>実証済みの印刷・入稿ワークフロー</strong><br>Canva対応の印刷所での制作フローを確立。</span></li>
+        <li><span class="c-mark">◆</span><span class="c-body"><strong>登録者11万人のチャンネル運営</strong><br>「届ける」ための土台を、すでに持っています。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO highlight -->
+<section class="promo">
+  <div class="wrap">
+    <div class="promo-box">
+      <p class="eyebrow">The strongest channel</p>
+      <h2>あなたのカードが、<br><span class="num-big">11万人</span>に届くチャンス。</h2>
+      <p>このサロンの最大の特徴は、講師自身が発信のチャンネルを持っていること。ご紹介は、Yoko Reading Channel の一つのコンテンツとしてお届けするものです。チャンネルでご紹介できる仕上がりであることを前提に、作品ごとに検討します。系統やテイストは問いません。すべての作品のご紹介をお約束するものではありませんが、紹介に届く一作を、一緒に目指していきます。</p>
+      <span class="condition">※ 系統・テイストは不問です（チャンネルでご紹介できる仕上がりが前提となります）</span>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS / barrier-lowering -->
+<section class="access">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">No barriers</p>
+      <h2>パソコンも、絵心も、必須ではありません。</h2>
+      <p>「自分には無理かも」と思っている方ほど、読んでほしいところです。</p>
+    </div>
+    <div class="access-grid">
+      <div class="access-card">
+        <h3><span class="dot"></span>PCがなくても大丈夫</h3>
+        <p>制作にパソコンは必須ではありません。過去には、スマートフォンだけですべて作り上げた参加者もいます。お手持ちの環境から始められます。</p>
+      </div>
+      <div class="access-card">
+        <h3><span class="dot"></span>絵が描けなくても作れる</h3>
+        <p>AI画像生成や既存の素材を使う方法も用意しています。絵が描けなくても自分のカードは作れます。もちろん、自分で描きたい方も大歓迎です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFF -->
+<section class="diff">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Not a study course</p>
+      <h2>星読み講座とは、役割が違います。</h2>
+    </div>
+    <div class="diff-table">
+      <div class="diff-row diff-head">
+        <div></div>
+        <div>星読み講座</div>
+        <div class="dh-accent">このサロン</div>
+      </div>
+      <div class="diff-row">
+        <div class="label">目的</div>
+        <div>学ぶ・知識を身につける</div>
+        <div class="mine">作る・売る・届ける（実践）</div>
+      </div>
+      <div class="diff-row">
+        <div class="label">形式</div>
+        <div>カリキュラム型の講座</div>
+        <div class="mine">継続型サロン（伴走）</div>
+      </div>
+      <div class="diff-row">
+        <div class="label">ゴール</div>
+        <div>占いを読めるようになる</div>
+        <div class="mine">自分のカードを世に出す</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price" id="price">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Join</p>
+      <h2>参加について</h2>
+    </div>
+    <div class="price-card">
+      <p class="badge">初回募集 限定価格</p>
+      <p class="regular">通常 10,000 円 / 月</p>
+      <div class="amount">8,000<span class="unit"> 円 / 月</span></div>
+      <p class="cap">定員 <span style="color:var(--brass);font-weight:600;">10</span> 名 ／ YOOR にて運営</p>
+      <p class="placeholder-note">※ 初回募集のメンバー限定の価格です。次回募集からは通常価格になります。</p>
+    </div>
+    <ul class="price-incl">
+      <li><span class="ic">◆</span>制作の進行サポート（伴走形式・メンバーの状態を見ながら進行）</li>
+      <li><span class="ic">◆</span>制作工程の動画教材</li>
+      <li><span class="ic">◆</span>入稿・印刷・販売までの実務サポート</li>
+      <li><span class="ic">◆</span>仕上がりに応じた紹介チャンス（Yoko Reading Channel）</li>
+      <li><span class="ic">◆</span>制作テーマを更新しながら継続的に取り組める環境</li>
+    </ul>
+    <p style="max-width:480px;margin:18px auto 0;font-size:.78rem;color:#ffe9d0;text-align:center;line-height:1.7;">※ アプリの基本操作など、パソコン・スマホ一般の使い方はご自身で調べていただく前提です。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">FAQ</p>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">パソコンは必要ですか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>必須ではありません。過去には、スマートフォンだけで制作を完成させた参加者もいます。お手持ちの環境から始められます。</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">絵が描けないのですが、作れますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>作れます。AI画像生成や既存の素材を使う方法も用意しています。絵を描くこと自体は必須ではありません。自分で描きたい方も、もちろん歓迎です。</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">どの種類のカードが作れますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>タロット・ルノルマン・オラクルから選べます。初めての方には、まず少ない枚数のオラクルカードから取りかかることをおすすめしています。慣れてきたら、次のデッキで枚数の多いものに挑戦できます。</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">作ったカードは必ず紹介してもらえますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>系統やテイストは問いません。ただ、Yoko Reading Channel でご紹介する以上、チャンネルのコンテンツとしてお届けできる仕上がりであることが前提になります。すべての作品の紹介をお約束するものではありませんが、その水準を一緒に目指していく場です。基準の詳細はサロン内でご案内します。</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">星読み講座とどう違いますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>星読み講座は「学ぶ」ための講座です。このサロンは「作る・売る・届ける」の実践の場で、役割が異なります。両方に取り組んでいただくこともできます。</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">どのくらいの期間で完成しますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>継続型サロンのため、決まった修了期限はありません。メンバーそれぞれの状態に合わせて進めます。1作目を完成させたら、次のデッキへと制作テーマを更新しながら続けていけます。</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">パソコンの基本操作も教えてもらえますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>このサロンでお伝えするのは、カードを作るための専門的な部分——デザイン、入稿データの作り方、印刷、販売までの実務です。ここは一つひとつ丁寧に伴走します。一方で、アプリのインストール方法やファイル形式の変更といった、パソコン・スマホの一般的な操作については、ご自身で調べながら進めていただくスタイルです。基礎から専門までをすべてお教えする「パソコン教室」ではない、という点だけご了承ください。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>世界に一つのカードを、<br>あなたの手から世に出す。</h2>
+    <p>作る人も、売りたい人も。ひとりでは越えられなかった壁を、一緒に越えていく場所です。</p>
+    <!-- <a href="#price" class="btn btn-primary">参加を検討する</a> -->
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="brand">Yoko Reading Channel</p>
+    <p>オリジナルカード制作サロン ／ プラットフォーム：YOOR</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var a=this.nextElementSibling;
+    var open=this.classList.contains('open');
+    document.querySelectorAll('.faq-q').forEach(function(x){
+      x.classList.remove('open');x.nextElementSibling.style.maxHeight=null;
+    });
+    if(!open){this.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+</script>
+</body>
+</html>
