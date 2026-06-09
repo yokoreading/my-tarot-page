@@ -9,292 +9,633 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#e96678;        /* ブランドのコーラルピンク：濃色面の主題 */
-  --ink-soft:#ef7d8c;
-  --paper:#fffaf0;      /* クリーム寄りの生成り */
-  --paper-warm:#f7eccf;  /* ブランドのクリーム */
-  --brass:#e0a81c;      /* ブランドの黄／黄土を差し色ゴールドに */
-  --brass-light:#f5c824; /* ブランドの鮮やかイエロー */
-  --pink:#e96678;       /* アクセントのコーラルピンク */
-  --pink-deep:#d23f54;  /* 明るい背景上の濃いピンク文字 */
-  --olive:#9aa040;      /* ブランドのオリーブ（第2アクセント） */
-  --olive-soft:#b2b75b;
-  --line:#f3dcc4;
-  --text:#5e3a2e;       /* 暖色に合う深いブラウン文字 */
-  --text-soft:#a07a52;
-  --white:#fffdf7;
+  --ink:#4f382c;
+  --ink-soft:#6c5144;
+  --paper:#fbf5ea;
+  --paper-warm:#f4ebe0;
+  --surface:rgba(255,255,250,.82);
+  --brass:#b78f56;
+  --brass-soft:#d3b27b;
+  --pink:#b25567;
+  --pink-deep:#903f56;
+  --olive:#74684d;
+  --line:#dbcabd;
+  --text:#3f3229;
+  --text-soft:#7f6b5d;
+  --white:#fdf8f2;
+  --shadow:0 28px 60px rgba(63,44,32,.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
+  min-height:100vh;
   font-family:'Noto Sans JP',sans-serif;
-  background:var(--paper);
+  background:linear-gradient(180deg,#fbf5ea 0%,#f2e6d7 100%);
   color:var(--text);
-  line-height:1.9;
+  line-height:1.85;
   font-weight:300;
   -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(183,143,86,.12), transparent 16%),
+    radial-gradient(circle at 88% 24%, rgba(159,112,76,.08), transparent 14%);
 }
 .serif{font-family:'Noto Serif JP',serif;}
-.wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
 .eyebrow{
-  font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--brass);font-weight:500;margin-bottom:18px;
+  font-size:.75rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--brass);
+  font-weight:600;
+  margin-bottom:20px;
 }
 
 /* ---------- HERO ---------- */
 .hero{
-  background:var(--ink);color:var(--white);
-  padding:96px 0 104px;position:relative;overflow:hidden;
+  background:linear-gradient(140deg, #3e332a 0%, #57463b 45%, #816050 100%);
+  color:var(--white);
+  padding:100px 0 120px;
+  position:relative;
+  overflow:hidden;
 }
 .hero::before{
-  content:"";position:absolute;inset:0;
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    radial-gradient(circle at 82% 18%, rgba(255,210,80,.22), transparent 46%),
-    radial-gradient(circle at 12% 88%, rgba(255,255,255,.12), transparent 40%);
+    radial-gradient(circle at 14% 18%, rgba(255,240,214,.22), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,238,196,.16), transparent 28%);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:-40px;
+  left:50%;
+  width:560px;
+  height:560px;
+  transform:translateX(-50%);
+  background:radial-gradient(circle, rgba(255,255,255,.08), transparent 58%);
   pointer-events:none;
 }
 .hero .wrap{position:relative;z-index:1;}
-.hero .eyebrow{color:var(--brass-light);}
+.hero .eyebrow{color:rgba(255,236,204,.92);}
 .hero h1{
-  font-family:'Noto Serif JP',serif;font-weight:600;
-  font-size:clamp(2rem,5.4vw,3.2rem);line-height:1.45;
-  letter-spacing:.02em;margin-bottom:28px;
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  font-size:clamp(2.7rem,5.2vw,4.4rem);
+  line-height:1.18;
+  letter-spacing:.02em;
+  margin-bottom:28px;
 }
-.hero h1 .accent{color:var(--brass-light);}
+.hero h1 .accent{color:var(--brass-soft);}
 .hero .lead{
-  font-size:clamp(1rem,2.4vw,1.12rem);color:#fff4e8;
-  max-width:640px;font-weight:300;
+  font-size:clamp(1rem,2.1vw,1.12rem);
+  color:rgba(255,245,230,.95);
+  max-width:660px;
+  font-weight:300;
 }
 .hero .sub{
-  margin-top:34px;font-size:.86rem;color:#ffe9d0;letter-spacing:.04em;
+  margin-top:34px;
+  font-size:.92rem;
+  color:rgba(255,245,230,.8);
+  letter-spacing:.04em;
 }
-.cta-row{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;}
+.cta-row{
+  margin-top:44px;
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
 .btn{
-  display:inline-block;padding:15px 34px;border-radius:999px;
-  font-weight:500;font-size:.92rem;letter-spacing:.06em;
-  text-decoration:none;transition:.25s;cursor:pointer;
+  display:inline-block;
+  padding:16px 38px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:.95rem;
+  letter-spacing:.08em;
+  text-decoration:none;
+  transition:.28s ease;
+  cursor:pointer;
 }
-.btn-primary{background:var(--white);color:var(--pink-deep);font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.08);}
-.btn-primary:hover{background:#fff;color:var(--ink);transform:translateY(-2px);}
-.final .btn-primary{background:var(--ink);color:var(--white);}
-.final .btn-primary:hover{background:var(--ink-soft);color:var(--white);}
-.btn-ghost{border:1px solid rgba(255,255,255,.32);color:var(--white);}
-.contact{text-align:center;margin:40px auto 0;max-width:480px;}
-.contact .lead-q{font-size:.92rem;color:var(--text-soft);margin-bottom:16px;line-height:1.8;}
+.btn-primary{
+  background:var(--white);
+  color:var(--ink);
+  box-shadow:0 20px 40px rgba(46,34,25,.15);
+}
+.btn-primary:hover{transform:translateY(-2px);background:#fff4ee;}
+.btn-ghost{
+  border:1px solid rgba(255,255,255,.38);
+  color:var(--white);
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.7);color:#fff;transform:translateY(-2px);}
+.contact{text-align:center;margin:42px auto 0;max-width:520px;}
+.contact .lead-q{
+  font-size:.95rem;
+  color:var(--text-soft);
+  margin-bottom:20px;
+  line-height:1.8;
+}
 .btn-line{
-  display:inline-block;background:#06c755;color:#fff;font-weight:700;
-  padding:15px 38px;border-radius:999px;font-size:.95rem;letter-spacing:.04em;
-  text-decoration:none;transition:.25s;box-shadow:0 4px 14px rgba(6,199,85,.3);
+  display:inline-block;
+  background:var(--ink);
+  color:var(--white);
+  font-weight:700;
+  padding:16px 40px;
+  border-radius:999px;
+  font-size:.96rem;
+  letter-spacing:.05em;
+  text-decoration:none;
+  transition:.28s ease;
+  box-shadow:0 18px 40px rgba(46,34,25,.18);
 }
-.btn-line:hover{background:#05b34c;transform:translateY(-2px);}
-.contact-on-pink .lead-q{color:#fff4e8;}
-.btn-ghost:hover{border-color:var(--brass-light);color:var(--brass-light);}
+.btn-line:hover{background:var(--ink-soft);transform:translateY(-2px);}
+.contact-on-pink .lead-q{color:rgba(255,245,230,.9);}
 
 /* ---------- SECTION base ---------- */
-section{padding:88px 0;}
-.section-head{text-align:center;margin-bottom:56px;}
-.section-head h2{
-  font-family:'Noto Serif JP',serif;font-weight:600;
-  font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.5;color:var(--ink);
+section{padding:96px 0;}
+.section-head{
+  text-align:center;
+  margin-bottom:64px;
+  position:relative;
 }
-.section-head p{margin-top:18px;color:var(--text-soft);font-size:.96rem;}
+.section-head::after{
+  content:"";
+  display:block;
+  width:72px;
+  height:1px;
+  margin:24px auto 0;
+  background:var(--brass);
+  opacity:.8;
+}
+.section-head h2{
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  font-size:clamp(1.8rem,3.2vw,2.6rem);
+  line-height:1.35;
+  color:var(--ink);
+}
+.section-head p{
+  margin-top:20px;
+  color:var(--text-soft);
+  font-size:1rem;
+  max-width:680px;
+  margin-left:auto;
+  margin-right:auto;
+}
 
 /* ---------- PROBLEM ---------- */
-.problem{background:var(--paper-warm);}
-.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.problem{background:linear-gradient(180deg, var(--paper-warm), var(--paper));}
+.problem-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:30px;
+}
 .problem-card{
-  background:var(--white);border:1px solid var(--line);
-  padding:34px 28px;border-radius:18px;
+  background:var(--surface);
+  border:1px solid rgba(143,117,91,.18);
+  padding:36px 34px;
+  border-radius:24px;
+  box-shadow:var(--shadow);
 }
 .problem-card .num{
-  font-family:'Noto Serif JP',serif;font-size:1.1rem;color:var(--olive);
-  font-weight:600;margin-bottom:14px;
+  font-family:'Noto Serif JP',serif;
+  font-size:1.08rem;
+  color:var(--brass);
+  font-weight:700;
+  margin-bottom:16px;
 }
-.problem-card h3{font-size:1.02rem;font-weight:500;margin-bottom:12px;color:var(--ink);}
-.problem-card p{font-size:.88rem;color:var(--text-soft);}
+.problem-card h3{
+  font-size:1.08rem;
+  font-weight:600;
+  margin-bottom:14px;
+  color:var(--ink);
+}
+.problem-card p{
+  font-size:.95rem;
+  color:var(--text-soft);
+  line-height:1.8;
+}
 
 /* ---------- CYCLE (signature) ---------- */
-.cycle{background:var(--ink);color:var(--white);}
-.cycle .section-head h2{color:var(--white);}
-.cycle .section-head p{color:#fff4e8;}
+.cycle{
+  background:linear-gradient(180deg, rgba(255,250,244,.96), rgba(252,247,240,.98));
+}
+.cycle .section-head h2{color:var(--ink);}
+.cycle .section-head p{color:var(--text-soft);}
 .cycle-track{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
-  border:1px solid rgba(255,255,255,.14);border-radius:20px;overflow:hidden;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border:1px solid rgba(143,117,91,.16);
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 .phase{
-  padding:42px 30px;position:relative;
-  border-right:1px solid rgba(255,255,255,.14);
+  padding:44px 36px;
+  position:relative;
+  background:var(--surface);
+  border-right:1px solid rgba(143,117,91,.12);
 }
 .phase:last-child{border-right:none;}
 .phase .ph-label{
-  font-size:.68rem;letter-spacing:.3em;color:var(--brass-light);
-  text-transform:uppercase;margin-bottom:20px;display:block;
+  font-size:.72rem;
+  letter-spacing:.28em;
+  color:var(--brass-soft);
+  text-transform:uppercase;
+  margin-bottom:20px;
+  display:block;
 }
 .phase .ph-title{
-  font-family:'Noto Serif JP',serif;font-size:1.32rem;font-weight:600;
-  margin-bottom:16px;line-height:1.4;
+  font-family:'Noto Serif JP',serif;
+  font-size:1.35rem;
+  font-weight:700;
+  margin-bottom:16px;
+  line-height:1.35;
 }
-.phase p{font-size:.86rem;color:#fff4e8;}
+.phase p{
+  font-size:.93rem;
+  color:var(--text-soft);
+  line-height:1.85;
+}
 .cycle-note{
-  text-align:center;margin-top:30px;font-size:.82rem;color:#ffe9d0;
+  text-align:center;
+  margin-top:36px;
+  font-size:.88rem;
+  color:var(--text-soft);
   letter-spacing:.04em;
 }
 .cycle-loop{
-  text-align:center;margin-top:8px;color:var(--brass-light);
-  font-size:.9rem;letter-spacing:.18em;
+  text-align:center;
+  margin-top:10px;
+  color:var(--brass-soft);
+  font-size:.98rem;
+  letter-spacing:.16em;
 }
 
 /* ---------- WHY ME ---------- */
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.why-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:46px;
+  align-items:start;
+}
 .why-text h2{
-  font-family:'Noto Serif JP',serif;font-weight:600;
-  font-size:clamp(1.4rem,3.4vw,1.9rem);line-height:1.55;color:var(--ink);
-  margin-bottom:24px;
+  font-size:clamp(1.7rem,3vw,2.3rem);
+  margin-bottom:28px;
 }
-.why-text p{color:var(--text-soft);font-size:.95rem;margin-bottom:18px;}
-.creds{list-style:none;}
+.why-text p{
+  color:var(--text-soft);
+  font-size:1rem;
+  margin-bottom:22px;
+}
+.creds{
+  list-style:none;
+  background:var(--surface);
+  border:1px solid rgba(143,117,91,.18);
+  border-radius:28px;
+  padding:28px 0;
+  box-shadow:var(--shadow);
+}
 .creds li{
-  padding:18px 0;border-bottom:1px solid var(--line);
-  display:flex;gap:16px;align-items:baseline;
+  padding:24px 34px;
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
 }
-.creds li:first-child{border-top:1px solid var(--line);}
-.creds .c-mark{color:var(--brass);font-family:'Noto Serif JP',serif;font-weight:600;flex-shrink:0;}
-.creds .c-body{font-size:.9rem;}
-.creds .c-body strong{font-weight:500;color:var(--ink);}
+.creds li:not(:last-child){border-bottom:1px solid rgba(143,117,91,.12);}
+.creds .c-mark{
+  color:var(--brass);
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  flex-shrink:0;
+  font-size:1rem;
+  line-height:1.3;
+}
+.creds .c-body{
+  font-size:.96rem;
+  color:var(--text-soft);
+  line-height:1.7;
+}
+.creds .c-body strong{
+  font-weight:700;
+  color:var(--ink);
+}
 
 /* ---------- PROMO highlight ---------- */
 .promo{
-  background:linear-gradient(180deg,var(--paper-warm),var(--paper));
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg, var(--paper-warm), var(--paper));
+  border-top:1px solid rgba(143,117,91,.12);
+  border-bottom:1px solid rgba(143,117,91,.12);
 }
 .promo-box{
-  background:var(--ink);color:var(--white);border-radius:22px;
-  padding:56px 48px;text-align:center;position:relative;overflow:hidden;
+  background:var(--ink);
+  color:var(--white);
+  border-radius:28px;
+  padding:60px 52px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 .promo-box::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%, rgba(255,210,80,.28), transparent 60%);
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 0%, rgba(255,240,214,.2), transparent 60%);
 }
 .promo-box>*{position:relative;z-index:1;}
-.promo-box .eyebrow{color:var(--brass-light);}
+.promo-box .eyebrow{color:var(--brass-soft);}
 .promo-box h2{
-  font-family:'Noto Serif JP',serif;font-weight:600;
-  font-size:clamp(1.5rem,3.8vw,2.2rem);line-height:1.5;margin-bottom:22px;
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  line-height:1.3;
+  margin-bottom:22px;
 }
-.promo-box .num-big{color:var(--brass-light);}
-.promo-box p{color:#fff4e8;font-size:.95rem;max-width:560px;margin:0 auto;}
+.promo-box .num-big{
+  color:var(--brass);
+  font-size:3.2rem;
+  display:block;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.promo-box p{
+  color:rgba(255,246,232,.92);
+  font-size:1rem;
+  max-width:620px;
+  margin:0 auto;
+  line-height:1.8;
+}
 .promo-box .condition{
-  margin-top:28px;display:inline-block;font-size:.8rem;letter-spacing:.06em;
-  color:var(--brass-light);border:1px solid rgba(255,255,255,.5);
-  padding:8px 20px;border-radius:999px;
+  margin-top:28px;
+  display:inline-block;
+  font-size:.82rem;
+  letter-spacing:.06em;
+  color:var(--brass-soft);
+  border:1px solid rgba(255,255,255,.35);
+  padding:12px 24px;
+  border-radius:999px;
 }
 
 /* ---------- ACCESS / barrier-lowering ---------- */
-.access{background:var(--white);}
-.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.access{background:var(--paper);}
+.access-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:26px;
+}
 .access-card{
-  border:1px solid var(--line);border-radius:18px;padding:32px 30px;
-  background:var(--paper);
+  border:1px solid rgba(143,117,91,.18);
+  border-radius:26px;
+  padding:36px 32px;
+  background:var(--surface);
+  box-shadow:var(--shadow);
 }
 .access-card h3{
-  font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:12px;
-  display:flex;align-items:center;gap:10px;
+  font-size:1.06rem;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
-.access-card h3 .dot{width:7px;height:7px;background:var(--olive);border-radius:50%;flex-shrink:0;}
-.access-card p{font-size:.88rem;color:var(--text-soft);}
+.access-card h3 .dot{
+  width:8px;
+  height:8px;
+  background:var(--brass);
+  border-radius:50%;
+  flex-shrink:0;
+}
+.access-card p{
+  font-size:.95rem;
+  color:var(--text-soft);
+  line-height:1.75;
+}
 
 /* ---------- DIFF table ---------- */
-.diff{background:var(--paper-warm);}
+.diff{background:linear-gradient(180deg, var(--paper-warm), var(--paper));}
 .diff-table{
-  background:var(--white);border:1px solid var(--line);border-radius:20px;
+  background:var(--surface);
+  border:1px solid rgba(143,117,91,.16);
+  border-radius:28px;
   overflow:hidden;
+  box-shadow:var(--shadow);
 }
-.diff-row{display:grid;grid-template-columns:1fr 1.3fr 1.3fr;}
-.diff-row>div{padding:22px 24px;border-bottom:1px solid var(--line);font-size:.88rem;}
+.diff-row{
+  display:grid;
+  grid-template-columns:1fr 1.3fr 1.3fr;
+}
+.diff-row>div{
+  padding:24px 28px;
+  border-bottom:1px solid rgba(143,117,91,.12);
+  font-size:.95rem;
+}
 .diff-row:last-child>div{border-bottom:none;}
 .diff-head>div{
-  background:var(--ink);color:var(--white);font-weight:500;
-  font-family:'Noto Serif JP',serif;border-bottom:none;
+  background:var(--ink);
+  color:var(--white);
+  font-weight:600;
+  font-family:'Noto Serif JP',serif;
+  border-bottom:none;
 }
-.diff-head .dh-accent{background:var(--ink-soft);color:var(--brass-light);}
-.diff-row .label{font-weight:500;color:var(--ink);background:var(--paper);}
+.diff-head .dh-accent{
+  background:var(--ink-soft);
+  color:var(--brass);
+}
+.diff-row .label{
+  font-weight:700;
+  color:var(--ink);
+  background:var(--paper);
+}
 .diff-row .mine{color:var(--ink);}
 
 /* ---------- PRICE ---------- */
-.price{background:var(--ink);color:var(--white);}
-.price .section-head h2{color:var(--white);}
+.price{background:linear-gradient(180deg, rgba(255,250,244,.98), rgba(247,238,227,.98));}
+.price .section-head h2{color:var(--ink);}
 .price-card{
-  max-width:480px;margin:0 auto;background:var(--white);color:var(--text);
-  border-radius:22px;padding:48px 40px;text-align:center;
+  max-width:520px;
+  margin:0 auto;
+  background:var(--surface);
+  color:var(--text);
+  border-radius:30px;
+  padding:52px 44px;
+  text-align:center;
   border-top:4px solid var(--brass);
+  box-shadow:var(--shadow);
 }
-.price-card .plan{font-size:.74rem;letter-spacing:.28em;color:var(--brass);text-transform:uppercase;margin-bottom:18px;}
+.price-card .plan{
+  font-size:.75rem;
+  letter-spacing:.3em;
+  color:var(--brass);
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
 .price-card .badge{
-  display:inline-block;background:var(--brass);color:var(--white);
-  font-size:.74rem;letter-spacing:.12em;font-weight:500;
-  padding:6px 16px;border-radius:999px;margin-bottom:20px;
+  display:inline-block;
+  background:var(--ink);
+  color:var(--white);
+  font-size:.78rem;
+  letter-spacing:.12em;
+  font-weight:700;
+  padding:8px 20px;
+  border-radius:999px;
+  margin-bottom:24px;
 }
 .price-card .regular{
-  font-size:.86rem;color:var(--text-soft);text-decoration:line-through;
-  margin-bottom:4px;
+  font-size:.92rem;
+  color:var(--text-soft);
+  text-decoration:line-through;
+  margin-bottom:8px;
 }
-.price-card .amount{font-family:'Noto Serif JP',serif;font-weight:700;font-size:2.6rem;color:var(--ink);line-height:1.2;}
+.price-card .amount{
+  font-family:'Noto Serif JP',serif;
+  font-weight:800;
+  font-size:3rem;
+  color:var(--ink);
+  line-height:1.05;
+}
 .price-card .amount .ph{color:var(--brass);}
-.price-card .unit{font-size:.9rem;color:var(--text-soft);font-weight:400;}
-.price-card .cap{margin-top:14px;font-size:.86rem;color:var(--text-soft);}
+.price-card .unit{
+  font-size:1rem;
+  color:var(--text-soft);
+  font-weight:500;
+}
+.price-card .cap{
+  margin-top:18px;
+  font-size:.95rem;
+  color:var(--text-soft);
+}
 .price-card .placeholder-note{
-  margin-top:24px;font-size:.74rem;color:#b08a8a;background:var(--paper-warm);
-  padding:10px 16px;border-radius:12px;letter-spacing:.02em;
+  margin-top:28px;
+  font-size:.82rem;
+  color:var(--text-soft);
+  background:rgba(251,245,234,.8);
+  padding:14px 18px;
+  border-radius:14px;
+  letter-spacing:.02em;
 }
-.price-incl{max-width:480px;margin:32px auto 0;list-style:none;}
+.price-incl{
+  max-width:520px;
+  margin:34px auto 0;
+  list-style:none;
+}
 .price-incl li{
-  padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);
-  font-size:.9rem;color:#fff4e8;display:flex;gap:12px;align-items:baseline;
+  padding:16px 0;
+  border-bottom:1px solid rgba(143,117,91,.1);
+  font-size:.95rem;
+  color:var(--ink);
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
 }
-.price-incl li .ic{color:var(--brass-light);flex-shrink:0;}
+.price-incl li:last-child{border-bottom:none;}
+.price-incl li .ic{
+  color:var(--brass);
+  flex-shrink:0;
+  margin-top:2px;
+}
 
 /* ---------- FAQ ---------- */
 .faq-item{
-  border-bottom:1px solid var(--line);padding:8px 0;
+  border-bottom:1px solid rgba(143,117,91,.12);
 }
 .faq-q{
-  width:100%;text-align:left;background:none;border:none;cursor:pointer;
-  padding:22px 0;font-size:1rem;font-weight:500;color:var(--ink);
-  font-family:'Noto Sans JP',sans-serif;display:flex;justify-content:space-between;
-  align-items:center;gap:20px;line-height:1.6;
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:22px 0;
+  font-size:1rem;
+  font-weight:700;
+  color:var(--ink);
+  font-family:'Noto Sans JP',sans-serif;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  line-height:1.6;
 }
-.faq-q .mk{color:var(--brass);font-size:1.3rem;flex-shrink:0;transition:.25s;font-weight:300;}
+.faq-q .mk{
+  color:var(--brass);
+  font-size:1.4rem;
+  flex-shrink:0;
+  transition:.25s;
+  font-weight:300;
+}
 .faq-q.open .mk{transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-.faq-a p{padding:0 0 24px;color:var(--text-soft);font-size:.9rem;}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+.faq-a p{
+  padding:0 0 24px;
+  color:var(--text-soft);
+  font-size:.95rem;
+  line-height:1.8;
+}
 
 /* ---------- FINAL CTA ---------- */
-.final{background:var(--paper-warm);text-align:center;}
-.final h2{
-  font-family:'Noto Serif JP',serif;font-weight:600;
-  font-size:clamp(1.5rem,3.8vw,2.1rem);color:var(--ink);
-  line-height:1.5;margin-bottom:22px;
+.final{
+  background:var(--paper);
+  text-align:center;
 }
-.final p{color:var(--text-soft);font-size:.95rem;margin-bottom:38px;max-width:540px;margin-left:auto;margin-right:auto;}
+.final h2{
+  font-family:'Noto Serif JP',serif;
+  font-weight:700;
+  font-size:clamp(1.8rem,3.8vw,2.6rem);
+  color:var(--ink);
+  line-height:1.35;
+  margin-bottom:22px;
+}
+.final p{
+  color:var(--text-soft);
+  font-size:1rem;
+  margin-bottom:38px;
+  max-width:620px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.8;
+}
 
 /* ---------- FOOTER ---------- */
-footer{background:var(--ink);color:#ffe9d0;padding:44px 0;text-align:center;font-size:.8rem;letter-spacing:.04em;}
-footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-size:.95rem;margin-bottom:10px;}
+footer{
+  background:var(--ink);
+  color:rgba(255,238,221,.95);
+  padding:44px 0;
+  text-align:center;
+  font-size:.82rem;
+  letter-spacing:.04em;
+}
+footer .brand{
+  color:var(--brass);
+  font-family:'Noto Serif JP',serif;
+  font-size:.96rem;
+  margin-bottom:10px;
+}
 
 /* ---------- responsive ---------- */
-@media(max-width:760px){
-  section{padding:64px 0;}
+@media(max-width:860px){
+  .wrap{padding:0 20px;}
+  section{padding:72px 0;}
+  .why-grid{grid-template-columns:1fr;}
+  .access-grid{grid-template-columns:1fr;}
   .problem-grid{grid-template-columns:1fr;}
   .cycle-track{grid-template-columns:1fr;}
-  .phase{border-right:none;border-bottom:1px solid rgba(255,255,255,.14);}
-  .phase:last-child{border-bottom:none;}
-  .why-grid{grid-template-columns:1fr;gap:32px;}
-  .access-grid{grid-template-columns:1fr;}
   .diff-row{grid-template-columns:1fr;}
   .diff-row>div{border-bottom:1px solid var(--line);}
   .diff-head{display:none;}
-  .diff-row .label{font-size:.74rem;letter-spacing:.1em;padding-bottom:6px;}
+  .diff-row .label{font-size:.84rem;letter-spacing:.1em;padding-bottom:6px;}
   .promo-box{padding:44px 28px;}
+}
+@media(max-width:680px){
+  .hero h1{font-size:2.4rem;}
+  .cta-row{flex-direction:column;}
+  .price-card{padding:40px 32px;}
 }
 @media(prefers-reduced-motion:reduce){
   *{transition:none!important;scroll-behavior:auto!important;}
@@ -307,11 +648,12 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">Yoko Reading Channel presents</p>
-    <h1>あなたの手で、<br>世界に一つの<span class="accent">カード</span>を。<br>そして、それを<span class="accent">届ける</span>ところまで。</h1>
-    <p class="lead">タロット・ルノルマン・オラクル。自分だけのデッキを企画から制作、現物として手にするまで。作って終わりではなく、売れる状態にして、世に出すまでを伴走する継続型サロンです。</p>
+    <p class="eyebrow">Yoko Reading Channel</p>
+    <h1>大人の感性で紡ぐ、<br>上質な<span class="accent">カード制作</span>。</h1>
+    <p class="lead">これまでの経験と心を、世界にたった一つのカードに。制作から入稿、販売まで、無理なく丁寧に進められる継続型サロンです。</p>
+    <p class="sub">「はじめてでも大丈夫かな」という方も、安心して進められるように伴走します。</p>
     <div class="cta-row">
-      <!-- <a href="#price" class="btn btn-primary">参加を検討する</a> -->
+      <a href="#price" class="btn btn-primary">まずはLINEで相談する</a>
       <a href="#cycle" class="btn btn-ghost">サロンの仕組みを見る</a>
     </div>
   </div>
@@ -321,24 +663,48 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
 <section class="problem">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Why it's hard alone</p>
-      <h2>「作りたい」のに、ひとりだと止まる。</h2>
+      <p class="eyebrow">一人では進めにくい理由</p>
+      <h2>「やりたい」のに、いつのまにか先送りになる。</h2>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
         <div class="num">壱</div>
-        <h3>入稿データで詰まる</h3>
-        <p>デザインができても、印刷所に出すためのデータ作成が最大の壁。塗り足し、解像度、入稿形式——ここで多くの人が止まります。</p>
+        <h3>制作の手順がわからない</h3>
+        <p>どこから始めればよいか。テーマ、枚数、絵柄、データの作り方まで、初めての方には情報が多すぎて戸惑ってしまいます。</p>
       </div>
       <div class="problem-card">
         <div class="num">弐</div>
-        <h3>印刷所・原価がわからない</h3>
-        <p>どこに頼めばいいか、最小ロットは、原価は、価格はどう決めるか。調べる時間も判断材料もないまま手が止まります。</p>
+        <h3>実務の不安が先に立つ</h3>
+        <p>印刷所選びや原価計算、入稿データの形式…。慣れない作業が続くと、途中で諦めたくなる方も少なくありません。</p>
       </div>
       <div class="problem-card">
         <div class="num">参</div>
-        <h3>作れても、売る場所がない</h3>
-        <p>完成しても、宣伝する手段も届ける相手もいない。ここが、ひとりで作る人が最後にぶつかる壁です。</p>
+        <h3>売り方・届け方が不安</h3>
+        <p>せっかくできたカードをどう手渡すか。販売先や紹介先がないと、作品を世に出す一歩が遠く感じられます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="access">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">For you</p>
+      <h2>大人の女性にふさわしい、次の一歩を。</h2>
+      <p>これまでの経験や感性を大切にしながら、安心してカード制作に取り組める場です。</p>
+    </div>
+    <div class="access-grid">
+      <div class="access-card">
+        <h3><span class="dot"></span>自分のペースで進めたい</h3>
+        <p>忙しい日々の中でも、無理のない進め方を大切にしています。ゆっくりと着実に形にしていけます。</p>
+      </div>
+      <div class="access-card">
+        <h3><span class="dot"></span>大人の感性を形にしたい</h3>
+        <p>年齢を重ねたからこそ生まれる、温かさや深みのある世界観。あなたの作品にしっかりと反映します。</p>
+      </div>
+      <div class="access-card">
+        <h3><span class="dot"></span>はじめての方にも安心</h3>
+        <p>制作経験がなくても、丁寧な説明と一緒に進める伴走サポートで、安心して制作を進められます。</p>
       </div>
     </div>
   </div>
@@ -380,14 +746,15 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
     <div class="why-grid">
       <div class="why-text">
         <p class="eyebrow">Why Yoko</p>
-        <h2>「作り方」だけでなく、<br>「売り方」「届け方」まで<br>通った人間が教える。</h2>
-        <p>占いカードの制作講座は他にもあります。けれど、自分で作り、自分で売り、自分のチャンネルで届けるところまで一気通貫で経験している人は、ほとんどいません。</p>
-        <p>6年間積み上げてきた制作と発信の実務を、そのままお渡しします。</p>
+        <h2>「作り方」だけでなく、<br>「売り方」「届け方」まで<br>安心して伴走できる。</h2>
+        <p>占いカード制作の世界は、一見華やかですが、初めての方には不安が多いものです。大人の女性が自分のペースで安心して進められるよう、無理のない進め方と丁寧なサポートを大切にしています。</p>
+        <p>制作・入稿・販売までを自分の手で経験し、実際に作品を届けてきた経験を、そのままお渡しします。</p>
       </div>
       <ul class="creds">
         <li><span class="c-mark">◆</span><span class="c-body"><strong>ルノルマンカード（第3版まで制作・販売）</strong><br>改訂を重ね、BOOTHで継続販売中。</span></li>
         <li><span class="c-mark">◆</span><span class="c-body"><strong>オラクルカード44枚を現在制作中</strong><br>企画から入稿、価格設定まで自分の手で。制作の全工程を実践しています。</span></li>
         <li><span class="c-mark">◆</span><span class="c-body"><strong>実証済みの印刷・入稿ワークフロー</strong><br>Canva対応の印刷所での制作フローを確立。</span></li>
+        <li><span class="c-mark">◆</span><span class="c-body"><strong>落ち着いた大人の女性にも安心の少人数制</strong><br>ひとりひとりのペースとご希望に寄り添いながら進めます。</span></li>
         <li><span class="c-mark">◆</span><span class="c-body"><strong>登録者11万人のチャンネル運営</strong><br>「届ける」ための土台を、すでに持っています。</span></li>
       </ul>
     </div>
@@ -399,9 +766,10 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
   <div class="wrap">
     <div class="promo-box">
       <p class="eyebrow">The strongest channel</p>
-      <h2>あなたのカードが、<br><span class="num-big">11万人</span>に届くチャンス。</h2>
-      <p>このサロンの最大の特徴は、講師自身が発信のチャンネルを持っていること。ご紹介は、Yoko Reading Channel の一つのコンテンツとしてお届けするものです。チャンネルでご紹介できる仕上がりであることを前提に、作品ごとに検討します。系統やテイストは問いません。すべての作品のご紹介をお約束するものではありませんが、紹介に届く一作を、一緒に目指していきます。</p>
-      <span class="condition">※ 系統・テイストは不問です（チャンネルでご紹介できる仕上がりが前提となります）</span>
+      <h2>あなたのカードが、<br><span class="num-big">11万人</span>に届く可能性。</h2>
+      <p>このサロンの大切な価値は、講師自身が発信の場を持っていること。完成した作品を、信頼できるチャンネルへ届けるための品質と見せ方まで、一緒に整えていきます。</p>
+      <p>上質な大人の感性を大切にした作品ほど、丁寧に届けられる価値があります。紹介はご希望に合わせて検討しますが、まずは一つひとつの仕上がりを大切にします。</p>
+      <span class="condition">※ すべての作品紹介をお約束するものではありません。紹介にふさわしい仕上がりを一緒に目指します。</span>
     </div>
   </div>
 </section>
@@ -471,7 +839,7 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
       <p class="regular">通常 10,000 円 / 月</p>
       <div class="amount">8,000<span class="unit"> 円 / 月</span></div>
       <p class="cap">定員 <span style="color:var(--brass);font-weight:600;">10</span> 名 ／ YOOR にて運営</p>
-      <p class="placeholder-note">※ 初回募集のメンバー限定の価格です。次回募集からは通常価格になります。</p>
+      <p class="placeholder-note">※ 少人数制で丁寧に進めるための特別枠です。次回募集からは通常価格になる可能性があります。</p>
     </div>
     <ul class="price-incl">
       <li><span class="ic">◆</span>制作の進行サポート（伴走形式・メンバーの状態を見ながら進行）</li>
@@ -482,8 +850,8 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
     </ul>
     <p style="max-width:480px;margin:18px auto 0;font-size:.78rem;color:#ffe9d0;text-align:center;line-height:1.7;">※ アプリの基本操作など、パソコン・スマホ一般の使い方はご自身で調べていただく前提です。</p>
     <div class="contact contact-on-pink">
-      <p class="lead-q">気になることがあれば、どんな小さなことでもお気軽にどうぞ。<br>LINEで個別にお答えします。</p>
-      <a href="https://lin.ee/XniTLk0" class="btn-line" target="_blank" rel="noopener">LINEで質問する</a>
+      <p class="lead-q">制作経験がなくても、丁寧にお伝えします。<br>まずは不安なことをLINEでご相談ください。</p>
+      <a href="https://lin.ee/XniTLk0" class="btn-line" target="_blank" rel="noopener">LINEで無料相談する</a>
     </div>
   </div>
 </section>
@@ -496,8 +864,8 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
       <h2>よくある質問</h2>
     </div>
     <div class="faq-item">
-      <button class="faq-q">パソコンは必要ですか？<span class="mk">+</span></button>
-      <div class="faq-a"><p>必須ではありません。過去には、スマートフォンだけで制作を完成させた参加者もいます。お手持ちの環境から始められます。</p></div>
+      <button class="faq-q">忙しい生活の中でも続けられますか？<span class="mk">+</span></button>
+      <div class="faq-a"><p>はい。こちらは忙しい方にも無理なく進められるよう、急かさないペースでの伴走型です。できる範囲で少しずつ進めていただけます。</p></div>
     </div>
     <div class="faq-item">
       <button class="faq-q">絵が描けないのですが、作れますか？<span class="mk">+</span></button>
@@ -525,7 +893,7 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
     </div>
     <div class="contact">
       <p class="lead-q">ここで解決しないことは、LINEからお気軽にどうぞ。<br>どんな小さなことでも、個別にお答えします。</p>
-      <a href="https://lin.ee/XniTLk0" class="btn-line" target="_blank" rel="noopener">LINEで質問する</a>
+      <a href="https://lin.ee/XniTLk0" class="btn-line" target="_blank" rel="noopener">LINEで無料相談する</a>
     </div>
   </div>
 </section>
@@ -535,7 +903,7 @@ footer .brand{color:var(--brass-light);font-family:'Noto Serif JP',serif;font-si
   <div class="wrap">
     <h2>世界に一つのカードを、<br>あなたの手から世に出す。</h2>
     <p>作る人も、売りたい人も。ひとりでは越えられなかった壁を、一緒に越えていく場所です。</p>
-    <!-- <a href="#price" class="btn btn-primary">参加を検討する</a> -->
+    <a href="https://lin.ee/XniTLk0" class="btn btn-primary">LINEで無料相談する</a>
   </div>
 </section>
 
